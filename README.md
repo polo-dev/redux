@@ -50,6 +50,7 @@ Mettez vos dumb components dans components
 	* change_color
 * créer vos reducers (avec redux combine reducers)
 * créer votre store avec votre root reducers et votre preloaded state
+* Ajouter redux-logger middleware
 
 ## Step 4 :
 
@@ -58,3 +59,7 @@ Ranger tous dans les bons dossiers
 ## Step5
 
 Connecter vos composants à l'aide de container (react-redux connect)
+
+# Step6
+
+Ajouter redux-thunk middleware pour plus de souplesse sans perte de performance
