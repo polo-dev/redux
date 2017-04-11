@@ -1,19 +1,27 @@
 import {connect} from 'react-redux';
 import ColorList from '../components/list/ColorList';
+import {changeColor} from '../actions';
 
-const mapStateToProps = (state, ownProps) => {
+/*const mapStateToProps = (state, ownProps) => {
   return {
     colors: state.colors
   };
-};
+};*/
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapStateToProps = (state) => {
   return {
+    colors: state.colors
+  }
+}
+
+const mapDispatchToProps = {
+  changeColor
+   /*return {
     changeColor: (col) => dispatch({
       type: 'CHANGE_COLOR',
       col
     })
-  };
+  };*/
 };
 
 const ListContainer = connect(

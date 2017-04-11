@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ColorApp from './ColorApp';
-import './index.css';
-import {combineReducers, applyMiddleware, createStore} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import {Provider} from 'react-redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
+import rootReducer from './reducers';
+import './index.css';
 
 const stateFromLocal = localStorage.getItem('state');
 
@@ -28,51 +29,10 @@ let initialState = ( stateFromLocal
   }
 };
 
-
-
-
-const getNextId = (collection) => {
-  return collection.reduce( (acc, item) => Math.max(acc, item.id), 0) + 1;
-};
-
-function newColor(state = {} , action) {
-  console.log('action : ', action)
-  switch (action.type) {
-  case 'CHANGE_NEW_COLOR':
-    return { ...state, [action.key]: action.value};
-  default:
-    return state;
-  }
-}
-
-function colors(state = [] , action) {
-  switch (action.type) {
-  case 'ADD_COLOR':
-    return [...state, {...action.color, id: getNextId(state)}];
-  default:
-    return state;
-  }
-}
-
-function objStyle(state = {} , action) {
-  switch (action.type) {
-  case 'CHANGE_COLOR':
-    return { backgroundColor: action.col};
-  default:
-    return state;
-  }
-}
-
-const rootReducer = combineReducers({
-  newColor,
-  objStyle,
-  colors
-});
-
 const store = createStore(
   rootReducer,
   initialState,
-  applyMiddleware(thunk));
+  applyMiddleware(logger, thunk));
 
 store.subscribe(() => {
   localStorage.state = JSON.stringify(store.getState());
