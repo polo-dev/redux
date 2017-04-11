@@ -3,6 +3,9 @@ Gérer votre flux de données et de changement d'état de votre application grâ
 
 ## Step 0 :
 
+Les 3 principes :
+http://redux.js.org/docs/introduction/ThreePrinciples.html
+
 On regarde les exemples :
 https://github.com/reactjs/redux/tree/master/examples
 
